@@ -1,0 +1,4 @@
+name: AFKTimer
+version: unspecified
+main: com.foenixe.afk.AFKTimer
+api-version: 1.16
