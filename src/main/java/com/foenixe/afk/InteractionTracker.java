@@ -8,7 +8,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 public final class InteractionTracker implements Listener {
-    private AFKTimer plugin;
+    private final AFKTimer plugin;
 
     public InteractionTracker(AFKTimer plugin) {
         this.plugin = plugin;
@@ -16,7 +16,8 @@ public final class InteractionTracker implements Listener {
 
     @EventHandler
     public void move(PlayerMoveEvent e) {
-        plugin.getLastInteraction().put(e.getPlayer().getUniqueId(), System.currentTimeMillis());
+        if (e.getFrom().getX() != e.getTo().getX() && e.getFrom().getZ() != e.getTo().getZ())
+            plugin.getLastInteraction().put(e.getPlayer().getUniqueId(), System.currentTimeMillis());
     }
 
     @EventHandler
